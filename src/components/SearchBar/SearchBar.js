@@ -27,8 +27,8 @@ class SearchBar extends React.Component {
                     </ul>
                 </div>
                 <div className="SearchBar-fields">
-                    <input placeholder="Search Businesses" />
-                    <input placeholder="Where?" />
+                    <input placeholder="Search Place" />
+                    <input placeholder="Location?" />
                 </div>
                 <div className="SearchBar-submit">
                     <a>Let's Go</a>

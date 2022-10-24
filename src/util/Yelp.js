@@ -1,5 +1,4 @@
-apiKey = ''
-
+const apiKey = 'notshowingyouthekeylol'
 //an object
 const Yelp = {
     search(term, location, sortBy) {

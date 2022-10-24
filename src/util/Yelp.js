@@ -2,17 +2,31 @@ apiKey = ''
 
 //an object
 const Yelp = {
-    search(term, location, sortBy){
+    search(term, location, sortBy) {
         return fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`,
-        {headers: {
-            Authorization: `Bearer ${apiKey}`
-        }}).then(response => {
-            return response.json();
-        }).then(jsonResponse => {
-            if (jsonResponse.businesses) { //see if jsonresponse has a businesses key
-                return jsonResponse.businesses.map();
-            }
-        });
+            {
+                headers: {
+                    Authorization: `Bearer ${apiKey}`
+                }
+            }).then(response => {//convert response to json
+                return response.json();
+            }).then(jsonResponse => {//retrieve list of businesses from converted json
+                if (jsonResponse.businesses) { //see if jsonresponse has a businesses key
+                    return jsonResponse.businesses.map(business => ({
+                        id: business.id,
+                        imageSrc: business.imageSrc,
+                        name: business.name,
+                        address: business.location.address1,
+                        city: business.location.city,
+                        state: business.location.state,
+                        zipCode: business.location.zip_code,
+                        category: business.categories[0].title,
+                        rating: business.rating,
+                        reviewCount: business.review_count
+
+                    }));
+                }
+            });
     }
 }
 
